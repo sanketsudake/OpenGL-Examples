@@ -1,0 +1,10 @@
+#!/bin/bash
+start_time=$(date +%s)
+if [ $2 ]
+then
+g++ -Wall -c $1 `pkg-config --cflags opencv` `pkg-config --libs opencv` && g++ -g $1 `pkg-config --cflags opencv` `pkg-config --libs opencv` && ./a.out < $2
+else
+g++ -Wall -c $1 `pkg-config --cflags opencv` `pkg-config --libs opencv` && g++ -g $1 -lglut -lGL -lGLU -lm `pkg-config --cflags opencv` `pkg-config --libs opencv` && ./a.out
+fi
+finish_time=$(date +%s)
+echo -e "\nTime duration: $((finish_time - start_time)) secs."
