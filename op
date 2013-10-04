@@ -4,7 +4,7 @@ if [ $2 ]
 then
 g++ -Wall -c $1 && g++ -g $1  && ./a.out < $2
 else
-g++ -Wall -c $1 && g++ -g $1 -lglut -lGL -lGLU -lm  && ./a.out
+g++ -Wall -c $1 && g++ -g $1 -lglut -lGL -lGLU -lm -lSDL && ./a.out
 fi
 finish_time=$(date +%s)
 echo -e "\nTime duration: $((finish_time - start_time)) secs."
