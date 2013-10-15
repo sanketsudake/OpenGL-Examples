@@ -5,5 +5,5 @@ Sample OpenGL Programs
 
 Execution
 ```
-./op filename.cpp
+$ ./op filename.cpp
 ```

@@ -41,8 +41,10 @@ int main(int argc, char *argv[])
 		scanf("%d", &vertex[i][0]);
 		scanf("%d", &vertex[i][1]);
 		scanf("%d", &vertex[i][2]);
+		printf("%d %d %d \n", vertex[i][0], vertex[i][1], vertex[i][2]);
 	}
 	scanf("%d", &E);
+
 	for(int j = 0; j < E; j++)
 	{
 		scanf("%d", &edges[j][0]);
@@ -74,6 +76,7 @@ void init()
 
 void display()
 {
+	char name = 'A';
 	/* Clear all pixels
 	 */
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -82,10 +85,7 @@ void display()
 	for(int i = 0; i < V; i++)
 	{
 		glRasterPos3f(vertex[i][0], vertex[i][1], vertex[i][2]);
-		//glutSolidCube(0.2);
-
-		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 65 + i);
-
+		glutBitmapCharacter(GLUT_BITMAP_8_BY_13, name + i);
 	}
 
 	for(int j = 0; j < E; j++)
@@ -93,13 +93,6 @@ void display()
 		int a, b;
 		a = edges[j][0];
 		b = edges[j][1];
-		// GLfloat mid_x = (vertex[a][0] + vertex[a][0] )/2;
-		// GLfloat mid_y = (vertex[a][1] + vertex[b][1] )/ 2;
-		// GLfloat mid_z = (vertex[a][2] + vertex[b][2] )/ 2;
-		// printf("Edge : %d %d %d\n", mid_x, mid_y, mid_z);
-		// glColor3f(1, 1, 1);
-		// glRasterPos3f(mid_x, mid_y, mid_z);
-		// glutBitmapCharacter(GLUT_BITMAP_8_BY_13, '*');
 		glColor3f(0, 0, 1);
 		glBegin(GL_LINES);
 		glVertex3f(vertex[a][0], vertex[a][1], vertex[a][2]);

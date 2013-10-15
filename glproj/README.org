@@ -1,0 +1,11 @@
+* Config
+** speed
+
+** angle
+
+** intensity
+
+** color
+
+** size
+
