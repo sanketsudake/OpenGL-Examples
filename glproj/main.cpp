@@ -5,6 +5,7 @@ using namespace std;
 #include <GL/gl.h>
 #include <GL/glut.h>
 
+int drop_no = 0;
 void init();
 
 void display();
@@ -56,6 +57,11 @@ void keyboard(unsigned char key, int x, int y)
 	switch(key)
 	{
 	case 'r':
+		int temp = getnos(10);
+		if(temp < 5)
+			drop_no -= 20;
+		else
+			drop_no += 20;
 		//glRotatef(10,0, 0, 1);
 
 		break;
@@ -81,8 +87,8 @@ int main(int argc, char *argv[])
 
 void init()
 {
-	glClearColor (0.1, 0.1, 0.1, 0.1);
-	glColor4f(1.0, 1.0, 1.0, 0.9);
+	glClearColor (0,0, 0, 0.1);
+	glColor4f(1.0, 1.0, 1.0, 1);
 
 	/* Set background in window to white
 	 */
@@ -106,7 +112,7 @@ void display()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glEnable(GL_FOG);
-	GLfloat fogColor[4] = {1.0, 0.8, 0.8, 0.5};
+	GLfloat fogColor[4] = {1.0, 1.8, 1.0, 1.0};
 	GLfloat density = 0.9;
 	int fogMode = GL_EXP2;
 	glFogi (GL_FOG_MODE, fogMode);
@@ -118,21 +124,17 @@ void display()
 
 	glColor3f(0, 0, 0);
 
-    GLfloat mat_shininess[] = {  0.0 };
+
     GLfloat light_position1[] = { 1.0, 1.0, 0.0, 0.0 };
-	GLfloat light_position2[] = { 9.0, 9.0, 0.0, 0.0 };
+	GLfloat light_position2[] = { 0.0, 5.0, 0.0, 0.0 };
+	GLfloat light_position3[] = { 5.0, 0.0, 0.0, 0.0 };
 
-	for(int i = 0; i < 1000; i++){
+	for(int i = 0; i < drop_no; i++){
 		glPushMatrix();
-		glLightf(GL_LIGHT0, GL_DIFFUSE, 0.9);
+
 		glLightfv(GL_LIGHT0, GL_POSITION, light_position1);
-
-
-		glLightf(GL_LIGHT1, GL_DIFFUSE, 1.0);
 		glLightfv(GL_LIGHT1, GL_POSITION, light_position2);
-
-		glLightfv(GL_LIGHT0, GL_SHININESS, mat_shininess);
-		glLightfv(GL_LIGHT1, GL_SHININESS, mat_shininess);
+		glLightfv(GL_LIGHT2, GL_POSITION, light_position3);
 
 		glTranslatef(0, 0, 0);
 		glTranslatef(getnosf(10), getnosf(10), 0);
@@ -147,7 +149,6 @@ void display()
 	}
 	///glutSolidSphere(GLdouble radius, GLint slices, GLint stacks)
 	glutSwapBuffers();
-
 }
 
 void reshape(int w, int h) {
@@ -157,5 +158,4 @@ void reshape(int w, int h) {
 	glOrtho(0.0, 10.0, 0.0, 10.0, 0.0, 10.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-
 }
