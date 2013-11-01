@@ -45,8 +45,6 @@ int main(int argc, char *argv[])
 	else{
 		printf("File not opened");
 	}
-
-
 	glutDisplayFunc(display);
 	glutMainLoop();
     return 0;
@@ -56,13 +54,11 @@ void init()
 {
 	/* Set background in window to white
 	 */
-
 	glClearColor(1, 1, 1, 0.5);
 	/* Set window co-ordinate system
 	 */
 	glOrtho(-1.0, 6.0, -1.0, 6.0, -1.0, 1.0);
 }
-
 
 void display()
 {
@@ -77,7 +73,6 @@ void display()
 	glVertex2f(0, 5);
 	glEnd();
 	glColor3f(0, 0, 1);
-
 	for(int i = 1; i <= 255; i++)
 	{
 		glBegin(GL_POLYGON);
